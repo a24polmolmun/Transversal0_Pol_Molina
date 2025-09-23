@@ -1,21 +1,24 @@
-  fetch("data.json")
-    .then(res => res.json())
-    .then(data => {
+fetch("getPreguntes.php")
+  .then(res => res.json())
+  .then(data => {
       console.log(data);
 
       const contenidor = document.getElementById("partida");
-let htmlString="";
+      let htmlString = "";
 
-for (let i=0; i<data.preguntes.length;i++) {
-    htmlString+= `<h3> ${data.preguntes[i].pregunta} </h3> `
-    for (let j = 0; j < data.preguntes[i].respostes.length; j++) {
-        htmlString+= `<button onclick="console.log('Has apretado la pregunta ${i+1} i respuestas ${j+1}')">
-            <img src="${data.preguntes[i].respostes[j].etiqueta}" alt="${data.preguntes[i].respostes}" width="100">
-            </button>`;
-    }
-}
+      for (let i = 0; i < data.preguntes.length; i++) {
+          htmlString += `<h3>${data.preguntes[i].pregunta}</h3>`;
 
-contenidor.innerHTML = htmlString;
-      
-    })
-    .catch(err => console.error("Error carregant JSON:", err));
+          for (let j = 0; j < data.preguntes[i].respostes.length; j++) {
+              htmlString += `
+                  <button onclick="console.log('Pregunta ${i+1}, Resposta ${j+1}')">
+                      <img src="${data.preguntes[i].respostes[j].etiqueta}" 
+                           alt="Logo ${j+1}" width="100">
+                  </button>
+              `;
+          }
+      }
+
+      contenidor.innerHTML = htmlString;
+  })
+  .catch(err => console.error("Error carregant preguntes:", err));
