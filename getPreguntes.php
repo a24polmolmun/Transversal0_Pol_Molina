@@ -1,23 +1,39 @@
 <?php
+require 'conexion.php';
 header("Content-Type: application/json");
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-$json = file_get_contents("data.json");
-$data = json_decode($json, true);
 
 $n = isset($_GET['n']) ? intval($_GET['n']) : 10;
 
-$preguntas = $data["preguntes"];
-shuffle($preguntas);
-$preguntas = array_slice($preguntas, 0, $n);
+$sqlPreguntas = "SELECT id, pregunta FROM preguntas ORDER BY RAND() LIMIT $n";
+$resultPreguntas = $conn->query($sqlPreguntas);
 
-foreach ($preguntas as &$p) {
-    unset($p["resposta_correcta"]);
+$preguntas = [];
+
+if ($resultPreguntas && $resultPreguntas->num_rows > 0) {
+    while ($row = $resultPreguntas->fetch_assoc()) {
+        $idPregunta = $row['id'];
+        $pregunta = $row['pregunta'];
+
+        $sqlRespuestas = "SELECT id, etiqueta FROM respuestas WHERE pregunta_id = $idPregunta ORDER BY id";
+        $resultRespuestas = $conn->query($sqlRespuestas);
+
+        $respuestas = [];
+        if ($resultRespuestas && $resultRespuestas->num_rows > 0) {
+            while ($res = $resultRespuestas->fetch_assoc()) {
+                $respuestas[] = [
+                    'id' => $res['id'],
+                    'etiqueta' => $res['etiqueta']
+                ];
+            }
+        }
+
+        $preguntas[] = [
+            'id' => $idPregunta,
+            'pregunta' => $pregunta,
+            'respostes' => $respuestas
+        ];
+    }
 }
 
-echo json_encode([
-    "preguntes" => $preguntas
-]);
+echo json_encode(['preguntes' => $preguntas]);
+?>

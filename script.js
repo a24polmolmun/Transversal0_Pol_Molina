@@ -41,7 +41,7 @@ function generarPreguntas(data) {
         pregunta.respostes.forEach((resposta, j) => {
             html += `
                 <button class="btn btn-primary" onclick="marcarRespuesta(${i}, ${j})" style="margin:5px">
-                    <img src="${resposta.etiqueta}" alt="Logo ${j+1}" width="100">
+                    <img src="${resposta.etiqueta}" alt="Logo ${j+1}" width="40">
                 </button>
             `;
         });
