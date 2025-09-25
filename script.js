@@ -12,9 +12,13 @@ function renderitzarMarcador() {
     let html = `Preguntes respostes: ${estatDeLaPartida.contadorPreguntes} de ${NPREGUNTAS}<br>`;
 
     estatDeLaPartida.respostesUsuari.forEach((resposta, i) => {
-        html += `Pregunta ${i+1}: <span class='badge text-bg-primary'>${resposta === undefined ? "O" : "X"}</span><br>`;
+        if(resposta === undefined){
+            html += `Pregunta ${i+1}: <span class='badge text-bg-primary'>O</span><br>`;
+        } else {
+            // Sumamos 1 si quieres mostrar 1..4 en lugar de 0..3
+            html += `Pregunta ${i+1}: <span class='badge text-bg-success'>Opció ${resposta+1}</span><br>`;
+        }
     });
-
     marcador.innerHTML = html;
 }
 
@@ -76,7 +80,7 @@ function enviarResultats() {
     .then(data => {
         // Mostrar resultado en un div en lugar de alert
         const divResultat = document.getElementById('resultat');
-        divResultat.textContent = `Has encertat ${data.correctes} de ${data.total} preguntes!`;
+        divResultat.textContent = `Has encertat ${data.correctes} de 10 preguntes!`;
     })
     .catch(err => console.error("Error enviando resultados:", err));
 }
