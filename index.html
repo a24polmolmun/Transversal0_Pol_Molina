@@ -7,10 +7,25 @@
     <script src="script.js"></script>
 </head>
 <body>
-    <h1>TEST MARQUES COMERCIALS</h1> <a href="admin.php" class="btn btn-secondary" style="margin-top:20px;">Entrar al admin</a>
-<div id="partida"></div>
-<div id="marcador"></div>
-<div id="resultat" style="margin-top:20px; font-weight:bold;"></div>
-<script type="module" src="script.js"></script>
+    <h1>TEST MARQUES COMERCIALS</h1> 
+    <a href="admin.php" class="btn btn-secondary" style="margin-top:20px;">Entrar al admin</a>
+    
+    <div id="formulari">
+        <h2>Introdueix el teu nom:</h2>
+        <form id="formNom">
+            <input type="text" id="nomUsuari" placeholder="Escriu el teu nom" required>
+            <button type="submit">Guardar</button>
+        </form>
+    </div>
+
+    <div id="benvinguda" class="hidden">
+        <h2 id="missatge"></h2>
+        <button id="btnEsborrar">Esborrar nom</button>
+    </div>
+
+    <div id="partida"></div>
+    <div id="marcador"></div>
+    <div id="resultat" style="margin-top:20px; font-weight:bold;"></div>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
