@@ -63,12 +63,13 @@ function generarPreguntas(data) {
         // Botons sense onclick, amb classe i data
         pregunta.respostes.forEach((resposta, j) => {
             html += `
+            <div class="btn-resposta-container">
                 <button class="btn btn-primary btn-resposta" 
                         data-pregunta="${i}" 
-                        data-resposta="${resposta.id}" 
-                        style="margin:5px">
-                    <img src="${resposta.etiqueta}" alt="Logo ${j + 1}" width="80">
+                        data-resposta="${resposta.id}">
+                    <img src="${resposta.etiqueta}" alt="Logo ${j + 1}">
                 </button>
+            </div>
             `;
         });
 
@@ -111,6 +112,7 @@ document.addEventListener("click", (event) => {
 
 // Enviar resultats a finalitza.php
 function enviarResultats() {
+    pararTemporitzador();
     fetch('finalitza.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
