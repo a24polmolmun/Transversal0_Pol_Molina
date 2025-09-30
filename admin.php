@@ -8,6 +8,9 @@ if(!$res->num_rows){
     $fk_col = 'pregunta_id';
 }
 
+// Carpeta para subir imágenes
+$carpetaSubida = "imagenes/"; 
+
 // CREAR NUEVA PREGUNTA
 if(isset($_POST['crear'])){
     $pregunta = $_POST['pregunta'];
@@ -19,10 +22,14 @@ if(isset($_POST['crear'])){
     $id_preg = $stmt->insert_id;
     $stmt->close();
 
-    foreach($_POST['respuestas'] as $i=>$r){
+    foreach($_FILES['respuestas_img']['tmp_name'] as $i => $tmpName){
         $c = ($i+1==$correcta)?1:0;
+        $nombreArchivo = basename($_FILES['respuestas_img']['name'][$i]);
+        $rutaDestino = $carpetaSubida . $nombreArchivo;
+        move_uploaded_file($tmpName, $rutaDestino);
+
         $stmt2 = $conn->prepare("INSERT INTO respuestas ($fk_col, etiqueta, correcta) VALUES (?,?,?)");
-        $stmt2->bind_param("isi", $id_preg, $r, $c);
+        $stmt2->bind_param("isi", $id_preg, $rutaDestino, $c);
         $stmt2->execute();
         $stmt2->close();
     }
@@ -57,11 +64,19 @@ if(isset($_POST['guardar'])){
     $stmt->close();
 
     foreach($_POST['id_resp'] as $i=>$idr){
-        $r = $_POST['respuestas'][$i];
         $c = ($i+1==intval($_POST['correcta']))?1:0;
+        $etiqueta = $_POST['respuestas'][$i] ?? '';
+
+        if(isset($_FILES['respuestas_img_edit']['tmp_name'][$i]) && $_FILES['respuestas_img_edit']['tmp_name'][$i] != ''){
+            $tmpName = $_FILES['respuestas_img_edit']['tmp_name'][$i];
+            $nombreArchivo = basename($_FILES['respuestas_img_edit']['name'][$i]);
+            $rutaDestino = $carpetaSubida . $nombreArchivo;
+            move_uploaded_file($tmpName, $rutaDestino);
+            $etiqueta = $rutaDestino; // Actualizar con nueva imagen
+        }
 
         $stmt2 = $conn->prepare("UPDATE respuestas SET etiqueta=?, correcta=? WHERE id=?");
-        $stmt2->bind_param("sii", $r, $c, $idr);
+        $stmt2->bind_param("sii", $etiqueta, $c, $idr);
         $stmt2->execute();
         $stmt2->close();
     }
@@ -78,10 +93,10 @@ $preguntas = $conn->query("SELECT * FROM preguntas ORDER BY id ASC");
 <hr>
 
 <h3>Crear nueva pregunta</h3>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <input type="text" name="pregunta" placeholder="Texto de la pregunta" required><br>
     <?php for($i=1;$i<=4;$i++): ?>
-        <input type="text" name="respuestas[]" placeholder="Respuesta <?=$i?>" required>
+        <input type="file" name="respuestas_img[]" accept="image/*" required>
         <input type="radio" name="correcta" value="<?=$i?>" <?=($i==1?'checked':'')?> > Correcta<br>
     <?php endfor; ?>
     <button name="crear" type="submit">Crear</button>
@@ -91,7 +106,7 @@ $preguntas = $conn->query("SELECT * FROM preguntas ORDER BY id ASC");
 <h3>Preguntas existentes</h3>
 <?php while($p = $preguntas->fetch_assoc()): ?>
     <?php $res = $conn->query("SELECT * FROM respuestas WHERE $fk_col=".$p['id']." ORDER BY id ASC"); ?>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <h4>Pregunta</h4>
         <input type="hidden" name="id" value="<?=$p['id']?>">
         <input type="text" name="pregunta" value="<?=htmlspecialchars($p['pregunta'])?>"><br>
@@ -99,7 +114,8 @@ $preguntas = $conn->query("SELECT * FROM preguntas ORDER BY id ASC");
         <h5>Respuestas</h5>
         <?php $i=0; while($r=$res->fetch_assoc()): ?>
             <input type="hidden" name="id_resp[]" value="<?=$r['id']?>">
-            <input type="text" name="respuestas[]" value="<?=htmlspecialchars($r['etiqueta'])?>">
+            <img src="<?=$r['etiqueta']?>" width="80" alt="Respuesta <?=$i+1?>"><br>
+            <input type="file" name="respuestas_img_edit[]" accept="image/*"><!-- Nueva imagen opcional -->
             <input type="radio" name="correcta" value="<?=($i+1)?>" <?=($r['correcta']==1?'checked':'')?>> Correcta<br>
         <?php $i++; endwhile; ?>
         <button type="submit" name="guardar">Guardar</button>
