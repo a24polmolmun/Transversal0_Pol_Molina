@@ -1,2 +1,44 @@
-# projecte
-projecte transversal 0
+Quiz de Marques Comercials
+Descripció del Projecte:
+
+Aquesta aplicació web és un quiz interactiu sobre marques comercials. L'usuari ha de respondre 10 preguntes, cadascuna amb 4 opcions de resposta en format imatge. L'objectiu és encertar tantes com es pugui en el menor temps possible.
+
+Funcionalitats principals:
+
+Introducció del nom de l’usuari abans de començar.
+
+Respostes visuals (imatges) per a cada pregunta.
+
+Visualització de la puntuació final i el temps total utilitzat en completar el quiz.
+
+Accés a una pàgina d’administració protegida per a:
+
+Crear noves preguntes
+
+Editar preguntes existents
+
+Eliminar preguntes no desitjades
+
+ODS
+
+Aquest projecte s'alinea amb l'ODS 4: Educació de qualitat, ja que fomenta l'aprenentatge interactiu i visual a través de jocs educatius. Tot i que l'eix temàtic gira entorn de marques comercials, el sistema pot adaptar-se fàcilment a altres àrees de coneixement, promovent metodologies lúdiques i digitals per a l'aprenentatge.
+
+A més, la part d'administració fomenta la creació col·laborativa de contingut educatiu, facilitant que mestres, educadors o usuaris puguin generar preguntes personalitzades adaptades a diferents nivells i interessos.
+
+Tecnologies Utilitzades
+
+(Aquí pots afegir les tecnologies emprades, per exemple:)
+
+HTML, CSS, JavaScript
+
+Framework o llibreries utilitzades (React, Vue, Bootstrap, etc.)
+
+Backend (si n'hi ha): Node.js, Express, Firebase, etc.
+
+Com començar
+
+Clona el repositori:
+
+git clone https://github.com/nom-usuari/quiz-marques.git
+
+Obre el fitxer index.html al navegador o segueix les instruccions d’instal·lació si és una aplicació amb backend.
