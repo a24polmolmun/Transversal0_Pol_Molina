@@ -1,22 +1,60 @@
-.pregunta {
-    display: flex;         
-    gap: 10px;              
-    flex-wrap: wrap;       
-    margin-bottom: 20px;    
+body {
+    background-color: #1f2937;
+    color: #ffff;
+}
+.btn-resposta-container {
+    display: inline-block;
+    margin: 5px;
+    vertical-align: top;  /* Alinea todos los botones arriba */
 }
 
 .btn-resposta {
     width: 120px;
     height: 120px;
-    padding: 5px;
-    margin: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;      /* Evita que se desborde la imagen */
+    background-color: #ffff;
 }
 
 .btn-resposta img {
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain;     
+    object-fit: contain;   /* Escala la imagen dentro del botón */
+    display: block;        /* Elimina espacios raros debajo de las imágenes */
+}
+#partida {
+    text-align: center;        /* centra el contenido dentro del div */
+    background-color: #374151; /* color de fondo */
+    margin: 20px auto;            /* centra el propio div */
+    width: 95%;              /* ancho fijo */
+    max-width: 800px;
+    padding: 20px;             /* espacio interior  */
+    border-radius: 10px;       /* esquinas redondeadas  */
+}
+
+/* Botones de respuestas */
+.btn-resposta {
+    background-color: #ffffff; /* color por defecto */
+    border: 2px solid #b2bec3;
+    color: #2d3436;
+    width: 120px;
+    height: 120px;
+    padding: 5px;
+    margin: 5px;
+    align-items: center;
+}
+/* Hover: cuando el cursor está encima */
+.btn-resposta:hover {
+    background-color: #fdcb6e !important; 
+    border-color: #e17055 !important;
+    color: #2d3436 !important;
+}
+
+/* Botón seleccionado */
+.btn-success {
+    background-color: #fdcb6e !important;
+    color: #ffffff !important;
+    border-color: #2d3436 !important;
 }
