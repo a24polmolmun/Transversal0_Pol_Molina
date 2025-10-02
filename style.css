@@ -1,60 +1,204 @@
+/* =========================
+   Estilos generales
+   ========================= */
 body {
-    background-color: #1f2937;
-    color: #ffff;
+    background-color: #1f2937; /* fondo de la página */
+    color: #ffff;              /* color de texto */
 }
+
+/* Contenedor de cada botón de respuesta */
 .btn-resposta-container {
     display: inline-block;
     margin: 5px;
-    vertical-align: top;  /* Alinea todos los botones arriba */
+    vertical-align: top;       /* alineación arriba para que estén en línea */
 }
 
+/* Botón de respuesta */
 .btn-resposta {
     width: 120px;
     height: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;      /* Evita que se desborde la imagen */
-    background-color: #ffff;
-}
-
-.btn-resposta img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;   /* Escala la imagen dentro del botón */
-    display: block;        /* Elimina espacios raros debajo de las imágenes */
-}
-#partida {
-    text-align: center;        /* centra el contenido dentro del div */
-    background-color: #374151; /* color de fondo */
-    margin: 20px auto;            /* centra el propio div */
-    width: 95%;              /* ancho fijo */
-    max-width: 800px;
-    padding: 20px;             /* espacio interior  */
-    border-radius: 10px;       /* esquinas redondeadas  */
-}
-
-/* Botones de respuestas */
-.btn-resposta {
+    overflow: hidden;          /* evita que la imagen sobresalga */
     background-color: #ffffff; /* color por defecto */
     border: 2px solid #b2bec3;
     color: #2d3436;
-    width: 120px;
-    height: 120px;
-    padding: 5px;
     margin: 5px;
-    align-items: center;
+    padding: 5px;
 }
-/* Hover: cuando el cursor está encima */
+
+/* Imagen dentro del botón */
+.btn-resposta img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;       /* mantiene proporción dentro del botón */
+    display: block;
+}
+
+/* Hover y seleccionado */
 .btn-resposta:hover {
     background-color: #fdcb6e !important; 
     border-color: #e17055 !important;
-    color: #2d3436 !important;
 }
-
-/* Botón seleccionado */
 .btn-success {
     background-color: #fdcb6e !important;
     color: #ffffff !important;
     border-color: #2d3436 !important;
+}
+
+/* Contenedor principal del quiz */
+#partida {
+    text-align: center;        
+    background-color: #374151;
+    margin: 20px auto;
+    margin-top: 5%;
+    width: 95%;
+    max-width: 800px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Header */
+.capçelera {
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start;        
+    padding: 15px 20px;
+    background-color: #2c3e50;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Temporizador */
+#temporitzador {
+    font-size: 1.5rem;   
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+/* Marcador de preguntas */
+#marcador {
+    font-size: 1.2rem;
+    margin: 15px 0;
+    padding: 10px;
+    background-color: #343a40;
+    border-radius: 8px;
+}
+
+/* Resultado final */
+#resultat {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color:  #17a2b8;  
+    margin: 15px 0;
+    text-align: center;
+}
+
+/* =========================
+   Estilos para admin.php
+   ========================= */
+   
+/* Títulos en admin */
+.admin-container h1,
+.admin-container h3,
+.admin-container h4,
+.admin-container h5 {
+    margin-bottom: 15px;
+    color: #000; /* títulos negros solo en admin */
+}
+
+/* Contenedor principal admin */
+.admin-container {
+    max-width: 900px;  
+    margin: 20px auto; 
+    padding: 20px;
+    background-color: #f8f9fa; 
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Formularios admin */
+.admin-container form {
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    text-align: center; /* centra botones */
+}
+
+/* Inputs de texto y archivos */
+.admin-container input[type="text"],
+.admin-container input[type="file"],
+.admin-container .form-check-input {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* Botones */
+.admin-container button,
+.admin-container a.btn {
+    margin-top: 10px;
+}
+
+/* Imagenes de respuestas */
+.admin-container img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100px;
+    height: 100px;
+    object-fit: contain; /* se ve la imagen completa */
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+/* Radio correcto alineado a la derecha */
+.admin-container form input[type="radio"] {
+    margin-left: auto;
+}
+
+/* Línea de respuesta (imagen + radio) */
+.admin-container form .respuesta-linea {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; 
+    margin-bottom: 10px;
+}
+
+/* Input file responsive en móvil */
+.admin-container form input[type="file"] {
+    max-width: 70%;
+    min-width: 150px;
+}
+
+/* Botones guardar y borrar centrados */
+.admin-container form button[name="guardar"],
+.admin-container form a {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+/* Colores de botones */
+.admin-container form button[name="guardar"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+}
+.admin-container form button[name="guardar"]:hover {
+    background-color: #0056b3;
+}
+.admin-container form a {
+    background-color: #dc3545;
+    color: #fff;
+    text-decoration: none;
+}
+.admin-container form a:hover {
+    background-color: #b02a37;
 }

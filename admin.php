@@ -87,9 +87,19 @@ if(isset($_POST['guardar'])){
 // OBTENER PREGUNTAS
 $preguntas = $conn->query("SELECT * FROM preguntas ORDER BY id ASC");
 ?>
-
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="admin-container">
 <h1>Admin Quiz</h1>
-<a href="index.html">Volver al inicio</a>
+<a href="index.html" class="btn btn-secondary">Volver al inicio</a>
 <hr>
 
 <h3>Crear nueva pregunta</h3>
@@ -114,12 +124,17 @@ $preguntas = $conn->query("SELECT * FROM preguntas ORDER BY id ASC");
         <h5>Respuestas</h5>
         <?php $i=0; while($r=$res->fetch_assoc()): ?>
             <input type="hidden" name="id_resp[]" value="<?=$r['id']?>">
+            <div class="respuesta">
             <img src="<?=$r['etiqueta']?>" width="80" alt="Respuesta <?=$i+1?>"><br>
-            <input type="file" name="respuestas_img_edit[]" accept="image/*"><!-- Nueva imagen opcional -->
+            <input type="file" name="respuestas_img_edit[]" accept="image/*">
             <input type="radio" name="correcta" value="<?=($i+1)?>" <?=($r['correcta']==1?'checked':'')?>> Correcta<br>
+            </div>
         <?php $i++; endwhile; ?>
         <button type="submit" name="guardar">Guardar</button>
         <a href="?borrar=<?=$p['id']?>" onclick="return confirm('Borrar?')">Borrar</a>
     </form>
     <hr>
 <?php endwhile; ?>
+</div>
+    </body>
+</html>
