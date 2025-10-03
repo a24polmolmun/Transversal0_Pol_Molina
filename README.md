@@ -43,7 +43,7 @@ A més, la part d'administració fomenta la creació col·laborativa de contingu
 
 Clona el repositori:
 
-git clone https://github.com/nom-usuari/quiz-marques.git
+git clone https://github.com/a24polmolmun/Transversal0_Pol_Molina.git
 
 Obre el fitxer index.html al navegador o segueix les instruccions d’instal·lació si és una aplicació amb backend.
 
