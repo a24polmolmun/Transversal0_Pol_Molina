@@ -50,6 +50,7 @@ Obre el fitxer index.html al navegador o segueix les instruccions d’instal·la
 ## Vercel
 <img width="1366" height="768" alt="Captura de pantalla de 2025-10-01 11-47-41" src="https://github.com/user-attachments/assets/5db3c1f1-ecda-4436-88de-a6a55caf2846" />
 Nomes es veu la part de Frontend 
+
 ##  SonarCloud
 <img width="1366" height="768" alt="Captura de pantalla de 2025-10-03 09-58-05" src="https://github.com/user-attachments/assets/1dfe2af7-ce83-4552-865a-916b7bc579ed" />
 Al SonarCloud hem surt el error de security que es perque tinc un fitxer amb contrasenyas i els altres error que hem surten son petits errors de codis del script.js.
