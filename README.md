@@ -55,4 +55,5 @@ Nomes es veu la part de Frontend
 <img width="1366" height="768" alt="Captura de pantalla de 2025-10-03 09-58-05" src="https://github.com/user-attachments/assets/1dfe2af7-ce83-4552-865a-916b7bc579ed" />
 Al SonarCloud hem surt el error de security que es perque tinc un fitxer amb contrasenyas i els altres error que hem surten son petits errors de codis del script.js.
 
-
+## Video YouTube
+https://www.youtube.com/watch?v=KA-XU72vwJQ
